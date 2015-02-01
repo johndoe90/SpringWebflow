@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow start-state="start"
+	  xmlns="http://www.springframework.org/schema/webflow"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
+
+	<!-- enter numbers -->
+	<view-state id="start" model="calculation">
+		<on-entry>
+			<evaluate expression="new pf.Calculation()" result="flowScope.calculation"  />
+		</on-entry>
+		<transition on="cancel" to="endState" />
+		<transition on="numbersEntered" to="addNumbers"/>
+	</view-state>
+	
+	<!-- perform arithmetic operation -->
+	<action-state id="addNumbers">
+		<evaluate expression="calculator.add(calculation.a, calculation.b)" result="flowScope.sum" />
+		<transition to="result" />
+	</action-state>
+	
+	<!-- show result -->
+	<view-state id="result">
+		<transition on="finished" to="endState"/>
+	</view-state>
+	
+	<end-state id="endState" />
+</flow>

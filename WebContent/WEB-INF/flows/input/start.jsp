@@ -15,6 +15,7 @@
              
       <b>a: </b><form:input path="a"/><br/>
       <b>b: </b><form:input path="b"/><br/>
+      <b>operation: <form:input path="operation" /></b>
       <input type="submit" name="_eventId_numbersEntered" 
              value="Submit" />
       <input type="submit" name="_eventId_cancel" 

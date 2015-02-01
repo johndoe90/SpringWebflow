@@ -7,6 +7,7 @@
   </head>
 
   <body>
-  	<span >Here comes the result: ${sum}</span>
+  	<span >Here comes the result: ${result}</span>
+  	<a href="${flowExecutionUrl}&_eventId=finished">Done</a>
   </body>
 </html>

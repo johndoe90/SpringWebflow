@@ -10,12 +10,21 @@
 			<evaluate expression="new pf.Calculation()" result="flowScope.calculation"  />
 		</on-entry>
 		<transition on="cancel" to="endState" />
-		<transition on="numbersEntered" to="addNumbers"/>
+		<transition on="numbersEntered" to="addOrSubtract"/>
 	</view-state>
+	
+	<decision-state id="addOrSubtract">
+		<if test="calculation.operation == 'add'" then="addNumbers" else="subtractNumbers" />
+	</decision-state>
 	
 	<!-- perform arithmetic operation -->
 	<action-state id="addNumbers">
-		<evaluate expression="calculator.add(calculation.a, calculation.b)" result="flowScope.sum" />
+		<evaluate expression="calculator.add(calculation.a, calculation.b)" result="flowScope.result" />
+		<transition to="result" />
+	</action-state>
+	
+	<action-state id="subtractNumbers">
+		<evaluate expression="calculator.subtract(calculation.a, calculation.b)" result="flowScope.result" />
 		<transition to="result" />
 	</action-state>
 	
